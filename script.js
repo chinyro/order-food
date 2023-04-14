@@ -1,9 +1,10 @@
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
-const items = [];
+const items = JSON.parse(localStorage.getItem('items') || []);
 
 function addItem(e) {
-    e.preventDefault(); //Prevent from loading/refreshing the form
+    //Prevent from loading/refreshing the form
+    e.preventDefault(); 
     //Take text from input and add it into an obj
     const text = (this.querySelector('[name=item]')).value; //use this instead of document.
     const item = {
@@ -12,11 +13,13 @@ function addItem(e) {
     };
     items.push(item);
     populateList(items, itemsList);
+    localStorage.setItem('items', JSON.stringify(items));
     this.reset();
 }
 
 function populateList(plates = [],platesList) {
     platesList.innerHTML = plates.map((plate, i) => {
+        // create an ul with items user submits - dynamically 
         return `
         <li>
             <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
@@ -25,7 +28,21 @@ function populateList(plates = [],platesList) {
     }).join('');
 }
 
+function toggleDone(e) {
+    if(!e.target.matches('input')) return; //skip this unless it's an input
+    const el = e.target;
+    const index = el.dataset.index;
+    items[index].done = !items[index].done;
+    localStorage.setItem('items', JSON.stringify(items));
+    populateList(items, itemsList);
+}
+
+// Storing data in local storage
+
 addItems.addEventListener('submit', addItem);
+itemsList.addEventListener('click', toggleDone);
+
+populateList(items, itemsList);
 
 
 
