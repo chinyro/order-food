@@ -82,7 +82,7 @@ html {
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  #reset-button {
+  #remove {
     margin: 10px;
     width: 90%;
     padding: 10px;

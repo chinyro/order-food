@@ -1,8 +1,9 @@
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
 const items = JSON.parse(localStorage.getItem('items')) || [];
-const countdownBtn = document.getElementById('reset-button');
+const removeAllItems = document.querySelector('#remove');
 
+// Create item and push it to array, set items to local storage
 function addItem(e) {
     //Prevent from loading/refreshing the form
     e.preventDefault(); 
@@ -17,7 +18,7 @@ function addItem(e) {
     localStorage.setItem('items', JSON.stringify(items));
     this.reset();
 }
-
+// Create and add items to the list
 function populateList(plates = [],platesList) {
     platesList.innerHTML = plates.map((plate, i) => {
         // create an ul with items user submits - dynamically 
@@ -29,6 +30,7 @@ function populateList(plates = [],platesList) {
     }).join('');
 }
 
+// target = add item button - Set items to local storage and set property done
 function toggleDone(e) {
     if(!e.target.matches('input')) return; //skip this unless it's an input
     const el = e.target;
@@ -37,17 +39,19 @@ function toggleDone(e) {
     localStorage.setItem('items', JSON.stringify(items));
     populateList(items, itemsList);
 }
-
-function resetBtn(e) {
+// Removes items from list and local storage
+function removeItems() {
     localStorage.clear();
+    items.length = 0;
+    window.location = window.location;
 }
 
 
-// Storing data in local storage
+// Event Listeners
 
 addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
-countdownBtn.addEventListener('click', resetBtn);
+removeAllItems.addEventListener('click', removeItems);
 
 populateList(items, itemsList);
 
