@@ -1,6 +1,7 @@
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
-const items = JSON.parse(localStorage.getItem('items') || []);
+const items = JSON.parse(localStorage.getItem('items')) || [];
+const countdownBtn = document.getElementById('reset-button');
 
 function addItem(e) {
     //Prevent from loading/refreshing the form
@@ -37,12 +38,19 @@ function toggleDone(e) {
     populateList(items, itemsList);
 }
 
+function resetBtn(e) {
+    localStorage.clear();
+}
+
+
 // Storing data in local storage
 
 addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
+countdownBtn.addEventListener('click', resetBtn);
 
 populateList(items, itemsList);
+
 
 
 

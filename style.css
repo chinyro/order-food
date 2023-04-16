@@ -81,3 +81,16 @@ html {
     outline: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
+
+  #reset-button {
+    margin: 10px;
+    width: 90%;
+    padding: 10px;
+    outline: 0;
+    background-color: rgba(40, 60, 134, 0.404);
+    color:azure;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
