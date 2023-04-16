@@ -1,3 +1,4 @@
+// Initializing JS project
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
 const items = JSON.parse(localStorage.getItem('items')) || [];
@@ -48,7 +49,6 @@ function removeItems() {
 
 
 // Event Listeners
-
 addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
 removeAllItems.addEventListener('click', removeItems);
