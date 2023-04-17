@@ -40,7 +40,7 @@ function toggleDone(e) {
     localStorage.setItem('items', JSON.stringify(items));
     populateList(items, itemsList);
 }
-// Removes items from list and local storage
+// Removes items from list, local storage and refresh
 function removeItems() {
     localStorage.clear();
     items.length = 0;
